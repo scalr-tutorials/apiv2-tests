@@ -59,7 +59,7 @@ class ScalrApiSession(requests.Session):
             "X-Scalr-Key-Id": self.key_id,
             "X-Scalr-Signature": sig,
             "X-Scalr-Date": date_header,
-            # "X-SCALR-DEBUG": "1"
+            "X-Scalr-Debug": "1"
         })
 
         self.logger.debug(repr(request.url))
