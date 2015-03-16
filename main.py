@@ -56,8 +56,6 @@ class ScalrApiSession(requests.Session):
         ])
 
         request.headers.update({
-            "Content-Type": "application/json",  # NOTE: This shouldn't actually be required on GET requests; it'll be removed.
-
             "X-Scalr-Key-Id": self.key_id,
             "X-Scalr-Signature": sig,
             "X-Scalr-Date": date_header,
