@@ -16,7 +16,7 @@ def main(credentials_file, scenario):
         api_url, api_key_id, api_key_secret, env_id, basic_auth_username, basic_auth_password = \
                 [creds.get(k, "") for k in ["api_url", "api_key_id", "api_key_secret", "env_id", "basic_auth_username", "basic_auth_password"]]
 
-    client = ScalrApiClient(api_url, api_key_id, api_key_secret)
+    client = ScalrApiClient(api_url.rstrip("/"), api_key_id, api_key_secret)
     client.session.auth = requests.auth.HTTPBasicAuth(basic_auth_username, basic_auth_password)
 
     # Load scenario
