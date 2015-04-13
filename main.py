@@ -92,7 +92,11 @@ def main(credentials_file):
     s = ScalrApiSession(api_url, api_key_id, api_key_secret)
     s.auth = requests.auth.HTTPBasicAuth(basic_auth_username, basic_auth_password)
 
-    for path in ["/api/user/v1/os/?family=ubuntu", "/api/user/v1/{0}/roles/".format(env_id), "/api/user/v1/{0}/images/".format(env_id)]:
+    for path in [
+        "/api/user/v1/os/?family=ubuntu",
+        "/api/user/v1/{0}/roles/".format(env_id),
+        "/api/user/v1/{0}/images/".format(env_id)
+    ]:
         print "\n\n\n"
         try:
             print "Accessing list endpoint: {0}".format(path)
