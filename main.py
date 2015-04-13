@@ -62,9 +62,9 @@ class ScalrApiSession(requests.Session):
             "X-Scalr-Debug": "1"
         })
 
-        self.logger.debug(repr(request.url))
-        self.logger.debug(repr(sts))
-        self.logger.debug(repr(sig))
+        self.logger.debug("URL: %s", request.url)
+        self.logger.debug("StringToSign: %s", repr(sts))
+        self.logger.debug("Signature: %s", repr(sig))
 
         return request
 
@@ -110,8 +110,7 @@ def main(credentials_file):
             body = s.get(detail_url).json()
             print json.dumps(body, indent=4)
         except requests.exceptions.HTTPError as e:
-            print "ERROR!", e.response.status_code
-            print e.response.text
+            print "ERROR!", e.response.status_code, e.response.text
             continue
 
     # Register an Image (not implemented yet)
