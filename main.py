@@ -87,7 +87,7 @@ def main(credentials_file):
     with open(credentials_file) as f:
         creds = json.load(f)
         api_url, api_key_id, api_key_secret, env_id, basic_auth_username, basic_auth_password = \
-                [creds[k] for k in ["api_url", "api_key_id", "api_key_secret", "env_id", "basic_auth_username", "basic_auth_password"]]
+                [creds.get(k, "") for k in ["api_url", "api_key_id", "api_key_secret", "env_id", "basic_auth_username", "basic_auth_password"]]
 
     s = ScalrApiSession(api_url, api_key_id, api_key_secret)
     s.auth = requests.auth.HTTPBasicAuth(basic_auth_username, basic_auth_password)
