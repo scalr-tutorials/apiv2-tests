@@ -14,7 +14,7 @@ OS_TRUSTY = {
     "id": "ubuntu-14-04",
     # Those are just here to use in asserts in the test code
     "family": "ubuntu",
-    "version": "14.04",
+    "generation": "14.04",
 }
 
 OS_PRECISE = {
@@ -259,9 +259,39 @@ class DeleteAssociatedImageTestCase(BaseApiTestCase):
         self.assertRaises(HTTPError, delete_image, self.client, self.env_id, self.image)
 
 
-class TestListOsTestCase(BaseApiTestCase):
+
+class ListImagesTestCase(BaseApiTestCase):
     def runTest(self):
-        kwargs = {k: OS_TRUSTY[k] for k in ["family", "version"]}
+        kwargs = {
+            "name": self.image["name"],
+            "os": self.image["os"]["id"],
+            "cloudPlatform": self.image["cloudPlatform"]
+        }
+
+        match = list_images(self.client, self.env_id, **kwargs)
+        self.assertEqual(1, len(match))
+
+        for k, v in kwargs.items():
+            self.assertEqual(match[0][k], self.image[k])
+
+
+class ListRolesTestCase(BaseApiTestCase):
+    def runTest(self):
+        kwargs = {
+            "name": self.role["name"],
+            "os": self.role["os"]["id"],
+        }
+
+        match = list_roles(self.client, self.env_id, **kwargs)
+        self.assertEqual(1, len(match))
+
+        for k, v in kwargs.items():
+            self.assertEqual(match[0][k], self.role[k])
+
+
+class ListOsTestCase(BaseApiTestCase):
+    def runTest(self):
+        kwargs = {k: OS_TRUSTY[k] for k in ["family", "generation"]}
         match = list_os(self.client, **kwargs)
         self.assertEqual(1, len(match))
 
