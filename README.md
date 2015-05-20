@@ -7,7 +7,7 @@ Using the samples
 -----------------
 
   1. (Optional) Create a Python virtual environment to avoid installing dependencies system-wide
-  2. Install the dependencies: `pip install requirements.txt` (you might need to `sudo` if you are installing system-wide).
+  2. Install the dependencies: `pip install -r requirements.txt` (you might need to `sudo` if you are installing system-wide).
   3. Create a credentials file: copy `credentials-sample.json` to `creds.json` and update the values there.
   4. Run the sample code: `python main.py creds.json list` and `python main.py creds.json create`. See below for more information.
  
